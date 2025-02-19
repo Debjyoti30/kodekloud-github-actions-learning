@@ -8,7 +8,7 @@ jobs:
          - name: Install cowsay
            run: |
                 ls
-                sudo apt-get cowsay -y
+                sudo apt-get install cowsay -y
          - name: Execute Cowsay
            run: cowsay -f dragon "song of Ice and fire" >> dragon.txt
          - name: Upload the artifact
