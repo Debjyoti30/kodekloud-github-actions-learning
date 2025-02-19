@@ -13,9 +13,12 @@ jobs:
           run: |
                ls
                sudo apt-get install cowsay -y
-               cowsay -f tiger "it's your avatar !!" >> tiger.txt
-               grep -i "tiger" tiger.txt
-               cat tiger.txt
+        - name: generating your Avatar
+          run: cowsay -f lion "ROAARRRRRR like a Lion" >> lion.txt
+        - name: read the lion file
+          run: cat lion.txt
+        - name: display the directory
+          run: ls -ltra
 
                
 
