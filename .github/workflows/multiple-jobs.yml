@@ -34,5 +34,7 @@ jobs:
         steps:
           - name: Download the Artifact
             uses: actions/download-artifact@v4
+            with:
+              name: dragon file
           - name: Deploy the file
             run: cat dragon.txt
