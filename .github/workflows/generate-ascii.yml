@@ -18,7 +18,7 @@ jobs:
         - name: test the file
           run: grep -i "dragon" dragon.txt
         - name: read the lion file
-          run: cat lion.txt
+          run: cat dragon.txt
         - name: display the directory
           run: ls -ltra
 
