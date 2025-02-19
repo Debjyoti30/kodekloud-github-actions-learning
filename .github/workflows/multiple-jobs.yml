@@ -26,7 +26,7 @@ jobs:
             with:
               name: dragon file
           - name: Test the dragon file
-            run: grep -i "dragon" dragon.txt
+            run: grep -i "song" dragon.txt
     Deploy-jobs:
         name: Deploy-jobs
         needs: [Test-jobs]
