@@ -1,0 +1,16 @@
+name: felicia-workflow-file
+on: push
+jobs:
+    traildemo:
+      name: trail demo
+      runs-on: ubuntu-latest
+      steps:
+        - name: repository checkout
+          uses: actions/checkout@v2
+        - name: welcome message
+          run: echo "welcome to the actions!!!"
+        - name: list number of files
+          run: ls
+        - name: read my README.md file
+          run: cat README.md
+          
