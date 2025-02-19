@@ -1,0 +1,38 @@
+name: multiple-jobs demo
+on: push
+jobs: 
+    Build-jobs:
+       name: Build-jobs
+       runs-on: ubuntu-latest
+       steps:
+         - name: Install cowsay
+           run: |
+                ls
+                sudo apt-get cowsay -y
+         - name: Execute Cowsay
+           run: cowsay -f dragon "song of Ice and fire" >> dragon.txt
+         - name: Upload the artifact
+           uses: actions/upload-artifact@v4
+           with:
+             name: dragon file
+             path: ./dragon.txt
+    Test-jobs:
+        name: Test-jobs
+        needs: [Build-jobs]
+        runs-on: ubuntu-latest
+        steps:
+          - name: Download the Artifact
+            uses: actions/download-artifact@v4
+            with:
+              name: dragon file
+          - name: Test the dragon file
+            run: grep -i "dragon" dragon.txt
+    Deploy-jobs:
+        name: Deploy-jobs
+        needs: [Test-jobs]
+        runs-on: ubuntu-latest
+        steps:
+          - name: Download the Artifact
+            uses: actions/download-artifact@v4
+          - name: Deploy the file
+            run: cat dragon.txt
