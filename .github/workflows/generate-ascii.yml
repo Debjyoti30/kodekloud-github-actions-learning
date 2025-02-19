@@ -14,7 +14,9 @@ jobs:
                ls
                sudo apt-get install cowsay -y
         - name: generating your Avatar
-          run: cowsay -f lion "ROAARRRRRR like a Lion" >> lion.txt
+          run: cowsay -f dragon "spit fire like a dragon" >> dragon.txt
+        - name: test the file
+          run: grep -i "dragon" dragon.txt
         - name: read the lion file
           run: cat lion.txt
         - name: display the directory
