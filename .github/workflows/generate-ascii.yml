@@ -1,0 +1,21 @@
+name: generate ascii character using cowsay
+on: push
+jobs:
+    generate_ascii:
+      name: generate ascii
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout the repo
+          uses: actions/checkout@v4
+        - name: greet the users
+          run: echo "Let's generate some avatars"
+        - name: executing shell cmds
+          run: |
+               ls
+               sudo apt-get install cowsay -y
+               cowsay -f tiger "it's your avatar !!" >> tiger.txt
+               grep -i "tiger" tiger.txt
+               cat tiger.txt
+
+               
+
