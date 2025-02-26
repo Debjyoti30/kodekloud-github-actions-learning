@@ -1,0 +1,29 @@
+name: test the event trigger filter in Github workflow
+on:
+ workflow_dispatch:
+ push:
+    branches: 
+      - main
+      - '!feature/**'
+    paths-ignore: 
+      - README.md
+ pull_request: 
+   branches: 
+     - main
+   types: 
+     - opened
+     - closed
+jobs:
+  job_context:
+    name: Get the job context
+    strategy:
+      matrix:
+        os: [ubuntu-latest,windows-latest]
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: Get the job status
+        env:
+          JOB_CONTEXT: ${{toJson(job)}}
+        run: echo the job status is '$JOB_CONTEXT'
+       
+    
