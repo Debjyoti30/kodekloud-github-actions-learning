@@ -11,6 +11,7 @@ jobs:
       - name: salutation to the new user
         run: echo "Hello - world"
   docker_info_deploy:
+    if: github.ref == 'refs/heads/main'
     needs: [salutation]
     name: docker info & deploy
     strategy:
