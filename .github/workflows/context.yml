@@ -1,0 +1,17 @@
+name: Testing Github context
+on:
+ workflow_dispatch:
+jobs:
+  dump_context:
+    name: Dump context to logs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump Github context
+        env:
+          GITHUB_CONTEXT: ${{tojson(github)}}
+        run: echo 'GITHUB_CONTEXT'
+      - name: Dump job context
+        env:
+          GITHUB_JOB: ${{toJson(job)}}
+        run: echo 'GITHUB_JOB'
+      

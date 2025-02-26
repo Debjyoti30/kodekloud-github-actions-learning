@@ -15,6 +15,7 @@ jobs:
     name: docker info & deploy
     strategy:
       max-parallel: 2
+      fail-fast: false
       matrix:
         os: [ubuntu-latest,ubuntu-20.04,windows-latest]
         images: [alpine,hello-world]
