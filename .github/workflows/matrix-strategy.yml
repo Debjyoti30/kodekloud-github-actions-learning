@@ -1,0 +1,29 @@
+name: use the concept of matrix strategy
+on: [push]
+jobs:
+  salutation:
+    name: welcome
+    strategy:
+      matrix:
+        os: [ubuntu-latest,ubuntu-20.04]
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: salutation to the new user
+        run: echo "Hello - world"
+  docker_info_deploy:
+    needs: [salutation]
+    name: docker info & deploy
+    strategy:
+      max-parallel: 2
+      matrix:
+        os: [ubuntu-latest,ubuntu-20.04,windows-latest]
+        images: [nginx,alpine,hello-world]
+        exclude:
+          - os: [windows-latest]
+          - images: [nginx,alpine]
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: Fetch the docker info
+        run: docker info
+      - name: docker image build on ${{matrix.os}}
+        run: docker run ${{matrix.images}}
